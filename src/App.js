@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+
 import "./App.css";
 
-class App extends Component {
+class App extends React.Component {
   state = {
     dogs: []
   };
@@ -19,7 +20,7 @@ class App extends Component {
   render() {
     const { dogs } = this.state;
     return dogs.length > 0 ? (
-      <div className="App">
+      <div className="dogs">
         <h1>Awhh</h1>
         <div className="dogs">
           {dogs.map(dog => {
