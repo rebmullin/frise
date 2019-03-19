@@ -3,8 +3,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    dogs: [],
-    error: "",
+    dogs: []
   };
 
   componentDidMount() {
@@ -12,26 +11,13 @@ class App extends Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
-          dogs: res.message,
+          dogs: res.message
         });
-
-        // if (res.status === 'error') {
-        //   this.setStatus({
-        //     error: res.message
-        //   })
-        // }
       })
-      .catch(err => {
-        console.log(err);
-        console.log("REBB err", err);
-        // this.setState({
-        //   error: res.status
-        // })
-      });
+      .catch(err => console.log(err));
   }
   render() {
     const { dogs } = this.state;
-    // console.log("REBB dog", this.state.dogs);
     return dogs.length > 0 ? (
       <div className="App">
         <h1>Awhh</h1>
