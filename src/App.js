@@ -1,10 +1,11 @@
 import React from "react";
+import LazyLoad from "react-lazyload";
 
 import "./App.css";
 
 class App extends React.Component {
   state = {
-    dogs: []
+    dogs: [],
   };
 
   componentDidMount() {
@@ -12,28 +13,34 @@ class App extends React.Component {
       .then(res => res.json())
       .then(res => {
         this.setState({
-          dogs: res.message
+          dogs: res.message,
         });
       })
       .catch(err => console.log(err));
   }
   render() {
     const { dogs } = this.state;
-    return dogs.length > 0 ? (
-      <div className="dogs">
-        <h1>Awhh</h1>
-        <div className="dogs">
-          {dogs.map(dog => {
-            return (
-              <div className="dog" key={dog}>
-                <img src={dog} alt="dog" />
-              </div>
-            );
-          })}
-        </div>
+    return (
+      <div className="dogs-wrapper">
+        {dogs.length > 0 ? (
+          <div className="dogs">
+            <h1 className="dogs-title">Awhh!</h1>
+            <div className="dogs">
+              {dogs.map(dog => {
+                return (
+                  <LazyLoad debounce height={100} offset={-100} key={dog} once>
+                    <div className="dog">
+                      <img className="dog-image" src={dog} alt="dog" />
+                    </div>
+                  </LazyLoad>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
-    ) : (
-      <p>Loading...</p>
     );
   }
 }

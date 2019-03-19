@@ -1,13 +1,17 @@
-.dogs {
+.dogs-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.dogs-title {
+  text-align: center;
 }
 
 .dog {
   max-width: 500px;
 }
 
-.dog img {
+.dog-image {
   max-width: 100%;
 }
