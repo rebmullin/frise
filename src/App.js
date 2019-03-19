@@ -1,26 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
 class App extends Component {
+  state = {
+    dogs: [],
+    error: "",
+  };
+
+  componentDidMount() {
+    fetch("https://dog.ceo/api/breed/frise/images")
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          dogs: res.message,
+        });
+
+        // if (res.status === 'error') {
+        //   this.setStatus({
+        //     error: res.message
+        //   })
+        // }
+      })
+      .catch(err => {
+        console.log(err);
+        console.log("REBB err", err);
+        // this.setState({
+        //   error: res.status
+        // })
+      });
+  }
   render() {
-    return (
+    const { dogs } = this.state;
+    // console.log("REBB dog", this.state.dogs);
+    return dogs.length > 0 ? (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>Awhh</h1>
+        <div className="dogs">
+          {dogs.map(dog => {
+            return (
+              <div className="dog" key={dog}>
+                <img src={dog} alt="dog" />
+              </div>
+            );
+          })}
+        </div>
       </div>
+    ) : (
+      <p>Loading...</p>
     );
   }
 }
