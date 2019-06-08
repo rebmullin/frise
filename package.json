@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://rebmullin.github.io/frise/",
   "dependencies": {
+    "@emotion/core": "^10.0.9",
     "gh-pages": "^2.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

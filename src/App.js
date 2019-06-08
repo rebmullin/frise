@@ -1,7 +1,12 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
+// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 import "./App.css";
+
+const midBp = "700px";
 
 class App extends React.Component {
   state = {
@@ -23,7 +28,15 @@ class App extends React.Component {
     return (
       <div className="dogs-wrapper">
         {dogs.length > 0 ? (
-          <div className="dogs">
+          <div
+            className="dogs"
+            css={css`
+              background-color: red;
+              @media (min-width: ${midBp}) {
+                background-color: blue;
+              }
+            `}
+          >
             <h1 className="dogs-title">Awhh!</h1>
             <div className="dogs">
               {dogs.map(dog => {
